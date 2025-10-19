@@ -1,0 +1,282 @@
+---
+// Timeline.astro - 时间轴组件
+import awardsData from '../../data/awards.json';
+
+// 按日期排序（最新的在前）
+const sortedAwards = [...awardsData.awards].sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateB.getTime() - dateA.getTime();
+});
+
+// 只显示前10个重要奖项
+const timelineAwards = sortedAwards.slice(0, 10);
+---
+
+<section class="timeline section" id="timeline">
+    <div class="container">
+        <div class="section-header scroll-reveal">
+            <h2 class="section-title">成长足迹</h2>
+            <p class="section-description">每一个奖项都是努力的见证，每一次进步都值得铭记</p>
+        </div>
+
+        <div class="timeline__container">
+            {
+                timelineAwards.map((award, index) => (
+                    <div class={`timeline-item scroll-reveal ${index % 2 === 0 ? 'left' : 'right'}`} data-delay={Math.min(index + 1, 5)}>
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" />
+                                    <line x1="8" y1="2" x2="8" y2="6" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                </svg>
+                                {award.date}
+                            </div>
+
+                            <div class="timeline-badge">
+                                {award.level === 'national' && '🏆'}
+                                {award.level === 'provincial' && '🥈'}
+                                {award.level === 'school' && '⭐'}
+                            </div>
+
+                            <h3 class="timeline-title">{award.title}</h3>
+
+                            <div class="timeline-rank">{award.rank}</div>
+
+                            {award.description && <p class="timeline-description">{award.description}</p>}
+
+                            <div class="timeline-meta">
+                                <span class="timeline-org">{award.organization}</span>
+                                {award.category && (
+                                    <>
+                                        <span class="dot">•</span>
+                                        <span class="timeline-category">{award.category}</span>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        <div class="timeline-marker" />
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="timeline__footer scroll-reveal">
+            <a href="/awards" class="view-all-link">
+                <span>查看全部荣誉</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .timeline {
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1rem;
+    }
+
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .timeline__container {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* 中心线 */
+    .timeline__container::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, transparent, var(--color-primary-600), transparent);
+        transform: translateX(-50%);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .timeline-item.left {
+        flex-direction: row;
+    }
+
+    .timeline-item.right {
+        flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+        width: calc(50% - 40px);
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .timeline-content:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-primary-600);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .timeline-marker {
+        width: 20px;
+        height: 20px;
+        background: var(--color-primary-600);
+        border: 3px solid var(--color-bg-primary);
+        border-radius: 50%;
+        margin: 0 30px;
+        flex-shrink: 0;
+        box-shadow: 0 0 20px rgba(25, 118, 210, 0.5);
+        position: relative;
+        z-index: 2;
+    }
+
+    .timeline-date {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-accent-cyan);
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-badge {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .timeline-rank {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(255, 184, 0, 0.1);
+        border: 1px solid var(--color-accent-gold);
+        border-radius: 9999px;
+        color: var(--color-accent-gold);
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-description {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+    }
+
+    .dot {
+        opacity: 0.5;
+    }
+
+    .timeline__footer {
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .view-all-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: rgba(25, 118, 210, 0.1);
+        border: 1px solid var(--color-primary-600);
+        border-radius: 0.5rem;
+        color: var(--color-accent-cyan);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .view-all-link:hover {
+        background: rgba(25, 118, 210, 0.2);
+        border-color: var(--color-accent-cyan);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    /* 移动端样式 */
+    @media (max-width: 767px) {
+        .timeline__container::before {
+            left: 20px;
+        }
+
+        .timeline-item {
+            flex-direction: row !important;
+        }
+
+        .timeline-content {
+            width: calc(100% - 60px);
+        }
+
+        .timeline-marker {
+            margin: 0 20px 0 10px;
+        }
+    }
+</style>

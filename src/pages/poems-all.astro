@@ -1,0 +1,329 @@
+---
+// poems-all.astro - 完整诗集页面
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Badge from '../components/common/Badge.astro';
+import Card from '../components/common/Card.astro';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
+
+// 读取完整诗集文件
+const poemPath = join(process.cwd(), 'poem.md');
+const poemContent = await readFile(poemPath, 'utf-8');
+
+// 解析诗歌
+const lines = poemContent.split('\n');
+const poems = [];
+let currentPoem = null;
+let poemLines = [];
+
+for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    // 跳过空行和总标题
+    if (!line || line === '王一然诗歌选集') continue;
+
+    // 检查是否是带《》的诗歌标题
+    if (line.includes('《') && line.includes('》')) {
+        // 保存之前的诗歌
+        if (currentPoem && poemLines.length > 0) {
+            currentPoem.content = poemLines.join('\n');
+            poems.push(currentPoem);
+        }
+
+        // 提取标题
+        const titleMatch = line.match(/《(.+?)》/);
+        if (titleMatch) {
+            currentPoem = {
+                title: titleMatch[1],
+                content: '',
+                id: poems.length + 1
+            };
+            poemLines = [];
+        }
+    }
+    // 检查是否是作者署名行
+    else if (line === '王一然' || line === '中 王一然' || line === '- 中 王一然') {
+        continue;
+    }
+    // 检查是否是不带《》的诗歌标题
+    else if (!currentPoem && line && !line.startsWith('（')) {
+        // 保存之前的诗歌
+        if (currentPoem && poemLines.length > 0) {
+            currentPoem.content = poemLines.join('\n');
+            poems.push(currentPoem);
+        }
+
+        currentPoem = {
+            title: line,
+            content: '',
+            id: poems.length + 1
+        };
+        poemLines = [];
+    }
+    // 诗歌内容
+    else if (currentPoem && line && !line.startsWith('（注')) {
+        poemLines.push(line);
+    }
+}
+
+// 保存最后一首诗
+if (currentPoem && poemLines.length > 0) {
+    currentPoem.content = poemLines.join('\n');
+    poems.push(currentPoem);
+}
+---
+
+<BaseLayout title="王一然诗歌全集" description="王一然的完整诗歌作品集，共收录60余首原创诗歌。">
+    <!-- 页头 -->
+    <section class="poems-hero">
+        <div class="container">
+            <div class="poems-hero__content scroll-reveal">
+                <Badge variant="primary">文学创作</Badge>
+                <h1 class="poems-hero__title gradient-text">王一然诗歌全集</h1>
+                <p class="poems-hero__description">
+                    四年积累，{poems.length} 首原创诗歌
+                    <br />
+                    记录成长，抒发情怀，展现才华
+                </p>
+                <div class="poems-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">{poems.length}</div>
+                        <div class="stat-label">诗歌总数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">4+</div>
+                        <div class="stat-label">创作年限</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">100%</div>
+                        <div class="stat-label">原创作品</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 诗歌列表 -->
+    <section class="poems-section section">
+        <div class="container">
+            <div class="poems-list">
+                {
+                    poems.map((poem, index) => (
+                        <Card class="poem-card scroll-reveal" data-delay={Math.min(index % 10, 5)}>
+                            <div class="poem-header">
+                                <div class="poem-number">#{poem.id}</div>
+                                <h3 class="poem-title">{poem.title}</h3>
+                                <div class="poem-author">作者：王一然</div>
+                            </div>
+                            <div class="poem-content">
+                                {poem.content.split('\n').map((line) => (
+                                    <p class="poem-line">{line}</p>
+                                ))}
+                            </div>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- 返回按钮 -->
+    <section class="back-section section">
+        <div class="container text-center">
+            <a href="/poems" class="back-btn">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                返回精选诗集
+            </a>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .poems-hero {
+        padding: 8rem 0 4rem;
+        text-align: center;
+    }
+
+    .poems-hero__content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .poems-hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin: 1rem 0 2rem;
+    }
+
+    .poems-hero__description {
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 3rem;
+    }
+
+    .poems-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-300));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: var(--color-text-secondary);
+        font-size: 0.875rem;
+    }
+
+    .poems-section {
+        position: relative;
+    }
+
+    .poems-list {
+        display: grid;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .poem-card {
+        padding: 2rem;
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .poem-card:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-accent-cyan);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .poem-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .poem-number {
+        font-size: 0.75rem;
+        color: var(--color-accent-cyan);
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        background: rgba(0, 229, 255, 0.1);
+        border-radius: 1rem;
+        flex-shrink: 0;
+    }
+
+    .poem-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        flex: 1;
+    }
+
+    .poem-author {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+        flex-shrink: 0;
+    }
+
+    .poem-content {
+        line-height: 2;
+    }
+
+    .poem-line {
+        color: var(--color-text-secondary);
+        margin: 0.5rem 0;
+        text-indent: 2em;
+    }
+
+    .poem-line:empty {
+        margin: 1rem 0;
+    }
+
+    .back-section {
+        padding: 2rem 0 4rem;
+    }
+
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: rgba(26, 31, 53, 0.6);
+        border: 1px solid var(--color-border);
+        border-radius: 0.75rem;
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .back-btn:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-accent-cyan);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    @media (max-width: 767px) {
+        .poems-hero {
+            padding: 6rem 0 3rem;
+        }
+
+        .poems-stats {
+            gap: 1.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+        }
+
+        .poem-header {
+            flex-wrap: wrap;
+        }
+
+        .poem-title {
+            font-size: 1.25rem;
+        }
+
+        .poem-card {
+            padding: 1.5rem;
+        }
+    }
+</style>

@@ -1,0 +1,430 @@
+---
+// about.astro - 关于我页面
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Badge from '../components/common/Badge.astro';
+import Card from '../components/common/Card.astro';
+import personalInfo from '../data/personal-info.json';
+---
+
+<BaseLayout title="关于我 - 王一然的个人介绍" description="王一然的详细个人信息、学业成绩、自荐理由等。永泰小学五年级学生，全面发展的优秀少年。">
+    <!-- 页头 -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero__content scroll-reveal">
+                <Badge variant="primary">个人介绍</Badge>
+                <h1 class="about-hero__title gradient-text">关于我</h1>
+                <p class="about-hero__quote">
+                    "{personalInfo.introduction.slice(0, 150)}..."
+                </p>
+                <div class="hero-actions">
+                    <a href="/resume-wangyiran-20251019.doc" download="王一然简历.doc" class="download-btn">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        下载完整简历
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 个人信息 -->
+    <section class="info-section section">
+        <div class="container">
+            <div class="info-grid">
+                <Card class="info-card scroll-reveal">
+                    <h2 class="card-title">基本信息</h2>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-label">姓名：</span>
+                            <span class="info-value">{personalInfo.name}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">学校：</span>
+                            <span class="info-value">{personalInfo.school}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">班级：</span>
+                            <span class="info-value">{personalInfo.grade}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">性别：</span>
+                            <span class="info-value">{personalInfo.gender}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">民族：</span>
+                            <span class="info-value">{personalInfo.ethnicity}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">社会工作：</span>
+                            <span class="info-value">{personalInfo.role}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">班级排名：</span>
+                            <span class="info-value highlight">第{personalInfo.ranking}名</span>
+                        </div>
+                    </div>
+                </Card>
+
+                <Card class="info-card scroll-reveal" data-delay="1">
+                    <h2 class="card-title">家庭背景</h2>
+                    <div class="info-list">
+                        <div class="info-section-block">
+                            <h3 class="info-subtitle">父亲</h3>
+                            <div class="info-item">
+                                <span class="info-label">姓名：</span>
+                                <span class="info-value">{personalInfo.父亲.name}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">职业：</span>
+                                <span class="info-value">{personalInfo.父亲.occupation}</span>
+                            </div>
+                        </div>
+                        <div class="info-section-block">
+                            <h3 class="info-subtitle">母亲</h3>
+                            <div class="info-item">
+                                <span class="info-label">姓名：</span>
+                                <span class="info-value">{personalInfo.母亲.name}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">职业：</span>
+                                <span class="info-value">{personalInfo.母亲.occupation}</span>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学业成绩 -->
+    <section class="grades-section section">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <Badge variant="success">学业表现</Badge>
+                <h2 class="section-title">学业成绩</h2>
+                <p class="section-description">全科优秀，全面发展</p>
+            </div>
+
+            <div class="grades-grid">
+                {
+                    Object.entries(personalInfo.grades).map(([subject, data], index) => {
+                        const gradeData = data as { score?: number; level: string };
+                        return (
+                            <div class="grade-card scroll-reveal" data-delay={Math.min(index + 1, 5)}>
+                                <div class="grade-subject">{subject}</div>
+                                {gradeData.score ? (
+                                    <>
+                                        <div class="grade-score">{gradeData.score}</div>
+                                        <div class="grade-level">{gradeData.level}</div>
+                                    </>
+                                ) : (
+                                    <div class="grade-level-only">{gradeData.level}</div>
+                                )}
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- 自荐理由 -->
+    <section class="reasons-section section">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <Badge variant="gold">核心优势</Badge>
+                <h2 class="section-title">自荐理由</h2>
+                <p class="section-description">五大理由，展现全面素质</p>
+            </div>
+
+            <div class="reasons-grid">
+                {
+                    personalInfo.selfRecommendation.map((reason, index) => (
+                        <Card hover class="reason-card scroll-reveal" data-delay={index + 1}>
+                            <div class="reason-icon">{reason.icon}</div>
+                            <h3 class="reason-title">{reason.title}</h3>
+                            <p class="reason-content">{reason.content}</p>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .about-hero {
+        padding: 8rem 0 4rem;
+        text-align: center;
+    }
+
+    .about-hero__content {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .about-hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin: 1rem 0 2rem;
+    }
+
+    .about-hero__quote {
+        font-size: 1.25rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        font-style: italic;
+        padding: 2rem;
+        background: rgba(26, 31, 53, 0.5);
+        border-left: 4px solid var(--color-accent-cyan);
+        border-radius: 0.5rem;
+    }
+
+    .hero-actions {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-300));
+        color: var(--color-dark-950);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.125rem;
+        border-radius: 0.75rem;
+        transition: all var(--duration-normal) var(--ease-out);
+        box-shadow: 0 4px 14px 0 rgba(0, 229, 255, 0.35);
+    }
+
+    .download-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px 0 rgba(0, 229, 255, 0.45);
+    }
+
+    .download-btn svg {
+        animation: bounce-vertical 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce-vertical {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(5px);
+        }
+    }
+
+    .info-section {
+        position: relative;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+    }
+
+    .info-card {
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--color-border);
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .info-section-block {
+        padding: 1rem 0;
+    }
+
+    .info-section-block:not(:last-child) {
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .info-subtitle {
+        font-size: 1.125rem;
+        color: var(--color-accent-cyan);
+        margin-bottom: 0.75rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    .info-label {
+        color: var(--color-text-muted);
+        font-size: 0.9rem;
+    }
+
+    .info-value {
+        color: var(--color-text-primary);
+        font-weight: 600;
+    }
+
+    .info-value.highlight {
+        color: var(--color-accent-gold);
+        font-size: 1.125rem;
+    }
+
+    /* 学业成绩部分 */
+    .grades-section {
+        background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 1rem 0;
+    }
+
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .grades-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .grade-card {
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .grade-card:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-accent-cyan);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .grade-subject {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 0.75rem;
+    }
+
+    .grade-score {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #10b981, #34d399);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.25rem;
+    }
+
+    .grade-level {
+        font-size: 0.875rem;
+        color: #10b981;
+        font-weight: 600;
+    }
+
+    .grade-level-only {
+        font-size: 1.5rem;
+        color: #10b981;
+        font-weight: 700;
+    }
+
+    /* 自荐理由部分 */
+    .reasons-section {
+        position: relative;
+    }
+
+    .reasons-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .reason-card {
+        padding: 2rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .reason-icon {
+        font-size: 3rem;
+        flex-shrink: 0;
+    }
+
+    .reason-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .reason-content {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+
+    @media (max-width: 767px) {
+        .about-hero {
+            padding: 6rem 0 3rem;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .grades-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .reason-card {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+</style>

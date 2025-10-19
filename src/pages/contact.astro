@@ -1,0 +1,445 @@
+---
+// contact.astro - 联系页面
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Badge from '../components/common/Badge.astro';
+import Button from '../components/common/Button.astro';
+import Card from '../components/common/Card.astro';
+---
+
+<BaseLayout title="联系方式 - 与王一然取得联系" description="王一然的联系方式和留言表单。">
+    <!-- 页头 -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero__content scroll-reveal">
+                <Badge variant="primary">保持联系</Badge>
+                <h1 class="contact-hero__title gradient-text">联系方式</h1>
+                <p class="contact-hero__description">
+                    欢迎与我交流学习经验，分享成长故事。
+                    <br />
+                    让我们一起进步，共同成长！
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系信息 -->
+    <section class="contact-section section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <Card class="info-card scroll-reveal">
+                        <h2 class="card-title">学校信息</h2>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <div class="info-icon">🏫</div>
+                                <div class="info-content">
+                                    <div class="info-label">学校</div>
+                                    <div class="info-value">永泰小学（十一集团校）</div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">🎓</div>
+                                <div class="info-content">
+                                    <div class="info-label">班级</div>
+                                    <div class="info-value">五年级四班</div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">📄</div>
+                                <div class="info-content">
+                                    <div class="info-label">简历下载</div>
+                                    <div class="info-value">
+                                        <a href="/resume-wangyiran-20251019.doc" download="王一然简历.doc" class="info-link"> 下载完整简历 ⬇️ </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+
+                    <Card class="info-card scroll-reveal" data-delay="1">
+                        <h2 class="card-title">项目链接</h2>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <div class="info-icon">🎮</div>
+                                <div class="info-content">
+                                    <div class="info-label">游戏项目</div>
+                                    <div class="info-value">
+                                        <a href="https://lako.top" target="_blank" rel="noopener noreferrer" class="info-link"> 植物大战僵尸 </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">📝</div>
+                                <div class="info-content">
+                                    <div class="info-label">诗歌作品</div>
+                                    <div class="info-value">
+                                        <a href="/poems" class="info-link"> 查看诗歌集 </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">🏆</div>
+                                <div class="info-content">
+                                    <div class="info-label">荣誉奖项</div>
+                                    <div class="info-value">
+                                        <a href="/awards" class="info-link"> 查看荣誉墙 </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+
+                    <Card class="info-card scroll-reveal" data-delay="2">
+                        <h2 class="card-title">联系方式</h2>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <div class="info-icon">📱</div>
+                                <div class="info-content">
+                                    <div class="info-label">联系电话</div>
+                                    <div class="info-value">
+                                        <a href="tel:13426086861" class="info-link">134-2608-6861</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">📞</div>
+                                <div class="info-content">
+                                    <div class="info-label">备用电话</div>
+                                    <div class="info-value">
+                                        <a href="tel:13401099489" class="info-link">134-0109-9489</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">☎️</div>
+                                <div class="info-content">
+                                    <div class="info-label">家长电话</div>
+                                    <div class="info-value">
+                                        <a href="tel:17001120101" class="info-link">170-0112-0101</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <Card class="form-card scroll-reveal" data-delay="3">
+                        <h2 class="card-title">留言板</h2>
+                        <p class="card-description">有任何想说的话，欢迎给我留言！</p>
+
+                        <form name="contact" method="POST" data-netlify="true" class="contact-form" id="contact-form">
+                            <input type="hidden" name="form-name" value="contact" />
+
+                            <div class="form-group">
+                                <label for="name" class="form-label">姓名 *</label>
+                                <input type="text" id="name" name="name" required class="form-input" placeholder="请输入您的姓名" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">邮箱</label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="请输入您的邮箱（选填）" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">留言内容 *</label>
+                                <textarea id="message" name="message" required rows="6" class="form-textarea" placeholder="请输入您想说的话..."></textarea>
+                            </div>
+
+                            <Button type="submit" variant="primary" size="lg" class="submit-btn">
+                                发送留言
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </Button>
+                        </form>
+
+                        <div id="form-success" class="form-message success">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <p>感谢您的留言！我会尽快回复。</p>
+                        </div>
+
+                        <div id="form-error" class="form-message error">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            <p>提交失败，请稍后再试。</p>
+                        </div>
+                    </Card>
+                </div>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .contact-hero {
+        padding: 8rem 0 4rem;
+        text-align: center;
+    }
+
+    .contact-hero__content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .contact-hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin: 1rem 0 2rem;
+    }
+
+    .contact-hero__description {
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+
+    .contact-section {
+        position: relative;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .info-card,
+    .form-card {
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .card-description {
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .info-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .info-content {
+        flex: 1;
+    }
+
+    .info-label {
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+        color: var(--color-text-primary);
+        font-weight: 600;
+    }
+
+    .info-link {
+        color: var(--color-accent-cyan);
+        text-decoration: none;
+        transition: color var(--duration-normal) var(--ease-out);
+    }
+
+    .info-link:hover {
+        color: var(--color-primary-300);
+        text-decoration: underline;
+    }
+
+    /* 表单样式 */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-label {
+        color: var(--color-text-primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        padding: 0.75rem 1rem;
+        background: rgba(26, 31, 53, 0.5);
+        border: 1px solid var(--color-border);
+        border-radius: 0.5rem;
+        color: var(--color-text-primary);
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--color-accent-cyan);
+        background: rgba(26, 31, 53, 0.8);
+        box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+        color: var(--color-text-muted);
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .form-message {
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .form-message.show {
+        display: flex;
+    }
+
+    .form-message.success {
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid #10b981;
+        color: #10b981;
+    }
+
+    .form-message.error {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid #ef4444;
+        color: #ef4444;
+    }
+
+    .form-message svg {
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 1023px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .contact-hero {
+            padding: 6rem 0 3rem;
+        }
+    }
+</style>
+
+<script>
+    // 表单提交处理
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const successMessage = document.getElementById('form-success');
+    const errorMessage = document.getElementById('form-error');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData as any).toString()
+                });
+
+                if (response.ok) {
+                    successMessage?.classList.add('show');
+                    errorMessage?.classList.remove('show');
+                    form.reset();
+
+                    setTimeout(() => {
+                        successMessage?.classList.remove('show');
+                    }, 5000);
+                } else {
+                    throw new Error('提交失败');
+                }
+            } catch (error) {
+                errorMessage?.classList.add('show');
+                successMessage?.classList.remove('show');
+
+                setTimeout(() => {
+                    errorMessage?.classList.remove('show');
+                }, 5000);
+            }
+        });
+    }
+</script>

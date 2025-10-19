@@ -1,0 +1,136 @@
+---
+// AchievementCards.astro - 成就卡片组件
+import Card from '../common/Card.astro';
+import Badge from '../common/Badge.astro';
+---
+
+<section class="achievements section" id="achievements">
+    <div class="container">
+        <div class="section-header scroll-reveal">
+            <Badge variant="primary">核心成就</Badge>
+            <h2 class="section-title">突出表现</h2>
+            <p class="section-description">在学业、文学、科技、体育等多个领域取得优异成绩</p>
+        </div>
+
+        <div class="achievements__grid">
+            <Card hover glow class="achievement-card scroll-reveal" data-delay="1">
+                <div class="card-icon">📚</div>
+                <h3 class="card-title">学业优异</h3>
+                <div class="card-highlight gradient-text">班级第2名</div>
+                <p class="card-description">语文96分、数学98分、英语97分，体质健康104.3分优秀。 全科优秀，全面发展。</p>
+                <div class="card-tags">
+                    <Badge variant="success">语文</Badge>
+                    <Badge variant="success">数学</Badge>
+                    <Badge variant="success">英语</Badge>
+                </div>
+            </Card>
+
+            <Card hover glow class="achievement-card scroll-reveal" data-delay="2">
+                <div class="card-icon">✍️</div>
+                <h3 class="card-title">文学才华</h3>
+                <div class="card-highlight gradient-text">全国一等奖 ×2</div>
+                <p class="card-description">连续两年获得全国叶圣陶杯作文一等奖，累计6次参赛。 四年创作63篇诗歌作品。</p>
+                <div class="card-tags">
+                    <Badge variant="gold">一等奖</Badge>
+                    <Badge variant="warning">二等奖</Badge>
+                    <Badge variant="primary">诗歌</Badge>
+                </div>
+            </Card>
+
+            <Card hover glow class="achievement-card scroll-reveal" data-delay="3">
+                <div class="card-icon">🤖</div>
+                <h3 class="card-title">科技创新</h3>
+                <div class="card-highlight gradient-text">AI竞赛铜奖</div>
+                <p class="card-description">全国青少年人工智能挑战赛铜奖，机器人工程设计专项赛。 自主开发游戏项目。</p>
+                <div class="card-tags">
+                    <Badge variant="warning">铜奖</Badge>
+                    <Badge variant="secondary">AI</Badge>
+                    <Badge variant="primary">编程</Badge>
+                </div>
+            </Card>
+
+            <Card hover glow class="achievement-card scroll-reveal" data-delay="4">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">体育荣誉</h3>
+                <div class="card-highlight gradient-text">全国第二名</div>
+                <p class="card-description">全国第七届华夏武状元少年英雄争霸赛第二名， 获得"最佳运动员"称号。</p>
+                <div class="card-tags">
+                    <Badge variant="warning">第二名</Badge>
+                    <Badge variant="gold">最佳运动员</Badge>
+                </div>
+            </Card>
+        </div>
+    </div>
+</section>
+
+<style>
+    .achievements {
+        background: radial-gradient(ellipse at center, rgba(25, 118, 210, 0.05) 0%, transparent 70%);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 1rem 0;
+    }
+
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .achievements__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .achievement-card {
+        text-align: center;
+        padding: 2.5rem;
+    }
+
+    .card-icon {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+    }
+
+    .card-highlight {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .card-description {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    @media (max-width: 767px) {
+        .achievements__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

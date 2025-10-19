@@ -1,0 +1,57 @@
+---
+// Badge.astro - 徽章组件
+interface Props {
+    variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'gold';
+    class?: string;
+}
+
+const { variant = 'primary', class: className = '' } = Astro.props;
+---
+
+<span class:list={['badge', `badge--${variant}`, className]}>
+    <slot />
+</span>
+
+<style>
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 9999px;
+        white-space: nowrap;
+    }
+
+    .badge--primary {
+        background: rgba(25, 118, 210, 0.2);
+        color: var(--color-primary-300);
+        border: 1px solid var(--color-primary-600);
+    }
+
+    .badge--secondary {
+        background: rgba(168, 85, 247, 0.2);
+        color: var(--color-accent-purple);
+        border: 1px solid var(--color-accent-purple);
+    }
+
+    .badge--success {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        border: 1px solid #10b981;
+    }
+
+    .badge--warning {
+        background: rgba(245, 158, 11, 0.2);
+        color: #f59e0b;
+        border: 1px solid #f59e0b;
+    }
+
+    .badge--gold {
+        background: linear-gradient(135deg, rgba(255, 184, 0, 0.2), rgba(255, 200, 50, 0.2));
+        color: var(--color-accent-gold);
+        border: 1px solid var(--color-accent-gold);
+        box-shadow: 0 0 10px rgba(255, 184, 0, 0.3);
+    }
+</style>

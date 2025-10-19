@@ -1,0 +1,267 @@
+---
+// poems.astro - 诗歌集页面
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Badge from '../components/common/Badge.astro';
+import Card from '../components/common/Card.astro';
+import poemsData from '../data/poems.json';
+---
+
+<BaseLayout title="诗歌集 - 王一然的原创诗歌作品" description="王一然四年创作的63篇原创诗歌作品，涵盖写人、写景、抒情、叙事等多种类型。">
+    <!-- 页头 -->
+    <section class="poems-hero">
+        <div class="container">
+            <div class="poems-hero__content scroll-reveal">
+                <Badge variant="secondary">文学创作</Badge>
+                <h1 class="poems-hero__title gradient-text">诗歌集</h1>
+                <p class="poems-hero__description">
+                    四年时间，积累了63篇诗歌作品。
+                    <br />
+                    用文字记录生活，用诗歌表达情感。
+                </p>
+            </div>
+
+            <!-- 统计面板 -->
+            <div class="stats-panel">
+                <div class="stat-card scroll-reveal" data-delay="1">
+                    <div class="stat-number">{poemsData.total}</div>
+                    <div class="stat-label">诗歌作品</div>
+                </div>
+                <div class="stat-card scroll-reveal" data-delay="2">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">创作年数</div>
+                </div>
+                <div class="stat-card scroll-reveal" data-delay="3">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">主题分类</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精选诗歌 -->
+    <section class="poems-section section">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <Badge variant="gold">精选推荐</Badge>
+                <h2 class="section-title">代表作品</h2>
+                <p class="section-description">精心挑选的优秀诗歌作品</p>
+                <a href="/poems-all" class="view-all-btn">
+                    查看完整诗集（60+首）
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="poems-grid">
+                {
+                    poemsData.featured.map((poem, index) => (
+                        <Card hover glow class="poem-card scroll-reveal" data-delay={index + 1}>
+                            <div class="poem-category">{poem.category}</div>
+                            <h3 class="poem-title">{poem.title}</h3>
+                            <div class="poem-content">{poem.content}</div>
+                            <div class="poem-meta">
+                                <span class="poem-date">{poem.date}</span>
+                            </div>
+                        </Card>
+                    ))
+                }
+            </div>
+
+            <div class="poems-note scroll-reveal">
+                <p>
+                    <strong>说明：</strong>本页面展示了8首精选代表作， 全部63篇诗歌作品可在完整诗集文档中查看。
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .poems-hero {
+        padding: 8rem 0 4rem;
+        text-align: center;
+    }
+
+    .poems-hero__content {
+        margin-bottom: 4rem;
+    }
+
+    .poems-hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin: 1rem 0;
+    }
+
+    .poems-hero__description {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+
+    .stats-panel {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .stat-card {
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--color-accent-purple), var(--color-primary-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: var(--color-text-secondary);
+    }
+
+    .poems-section {
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 1rem 0;
+    }
+
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto 1.5rem;
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .view-all-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-300));
+        color: var(--color-dark-950);
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        transition: all var(--duration-normal) var(--ease-out);
+        box-shadow: 0 4px 14px 0 rgba(0, 229, 255, 0.25);
+    }
+
+    .view-all-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px 0 rgba(0, 229, 255, 0.35);
+    }
+
+    .poems-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .poem-card {
+        padding: 2rem;
+    }
+
+    .poem-category {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(168, 85, 247, 0.2);
+        border: 1px solid var(--color-accent-purple);
+        border-radius: 9999px;
+        color: var(--color-accent-purple);
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .poem-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1.5rem;
+    }
+
+    .poem-content {
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+        line-height: 2;
+        white-space: pre-line;
+        margin-bottom: 1.5rem;
+        font-family: 'STKaiti', 'KaiTi', serif;
+    }
+
+    .poem-meta {
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .poem-date {
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+    }
+
+    .poems-note {
+        margin-top: 4rem;
+        padding: 2rem;
+        background: rgba(168, 85, 247, 0.1);
+        border: 1px solid var(--color-accent-purple);
+        border-radius: 1rem;
+        text-align: center;
+    }
+
+    .poems-note p {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+
+    @media (max-width: 767px) {
+        .poems-hero {
+            padding: 6rem 0 3rem;
+        }
+
+        .stats-panel {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .poems-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

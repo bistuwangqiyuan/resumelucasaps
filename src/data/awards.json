@@ -1,0 +1,163 @@
+{
+  "statistics": {
+    "total": 15,
+    "national": 6,
+    "provincial": 5,
+    "school": 4
+  },
+  "awards": [
+    {
+      "id": "award-001",
+      "title": "全国叶圣陶杯华人青少年作文大赛小学组一等奖",
+      "level": "national",
+      "rank": "一等奖",
+      "date": "2025-01",
+      "organization": "叶圣陶杯组委会",
+      "image": "/images/awards/国家级-一等奖-叶圣陶作文-2025年1月.png",
+      "description": "连续参赛，坚持不懈，最终获得全国一等奖"
+    },
+    {
+      "id": "award-002",
+      "title": "全国叶圣陶杯华人青少年作文大赛小学组一等奖",
+      "level": "national",
+      "rank": "一等奖",
+      "date": "2024-01",
+      "organization": "叶圣陶杯组委会",
+      "image": "/images/awards/国家级-一等奖-叶圣陶作文-2024年1月.png",
+      "description": "展现优秀的文学素养和创作能力"
+    },
+    {
+      "id": "award-003",
+      "title": "全国叶圣陶杯华人青少年作文大赛小学组二等奖",
+      "level": "national",
+      "rank": "二等奖",
+      "date": "2023-08",
+      "organization": "叶圣陶杯组委会",
+      "image": "/images/awards/国家级-二等奖-叶圣陶作文-2023年8月.png",
+      "description": "持续精进文学创作能力"
+    },
+    {
+      "id": "award-004",
+      "title": "全国青少年人工智能创新挑战赛铜奖",
+      "level": "national",
+      "rank": "铜奖",
+      "date": "2023-10",
+      "organization": "中国科协",
+      "category": "机器人工程设计专项赛",
+      "image": "/images/awards/国家级-铜奖-全国青少年人工智能创新赛-2023年10月.png",
+      "description": "参加少年科学院科技实践展示交流大会活动"
+    },
+    {
+      "id": "award-005",
+      "title": "全国第七届华夏武状元少年英雄争霸赛 男子少儿丙组 第二名",
+      "level": "national",
+      "rank": "第二名",
+      "date": "2023-04",
+      "organization": "华夏武状元组委会",
+      "image": "/images/awards/国家级-少儿武术运动水平等级达标赛-第二名-2023年4月.jpg",
+      "description": "展现坚韧意志和体育精神"
+    },
+    {
+      "id": "award-006",
+      "title": "全国少儿武术运动水平等级达标赛 最佳运动员",
+      "level": "national",
+      "rank": "最佳运动员",
+      "date": "2023-04",
+      "organization": "中国武术协会",
+      "image": "/images/awards/国家级-少儿武术运动水平等级达标赛-最佳运动员-2023年4月.jpg",
+      "description": "获得最佳运动员荣誉称号"
+    },
+    {
+      "id": "award-007",
+      "title": "北京市韶华杯青少年美育征文小学高年级组二等奖",
+      "level": "provincial",
+      "rank": "二等奖",
+      "date": "2025-01",
+      "organization": "北京市教委",
+      "image": "/images/awards/省部级-二等奖-韶华杯青少年作文-2025年1月14日.png",
+      "description": "展现美育素养和文学才华"
+    },
+    {
+      "id": "award-008",
+      "title": "北京市叶圣陶杯华人青少年作文大赛小学组二等奖",
+      "level": "provincial",
+      "rank": "二等奖",
+      "date": "2023-12",
+      "organization": "叶圣陶杯组委会",
+      "image": "/images/awards/省部级-二等奖-叶圣陶作文-2023年12月.png",
+      "description": "持续展现优秀的文学创作能力"
+    },
+    {
+      "id": "award-009",
+      "title": "北京市青少年人工智能创新赛二等奖",
+      "level": "provincial",
+      "rank": "二等奖",
+      "date": "2023-09",
+      "organization": "北京市科协",
+      "image": "/images/awards/省部级-二等奖-北京市青少年人工智能创新赛-2023年9月.png",
+      "description": "展现科技创新能力"
+    },
+    {
+      "id": "award-010",
+      "title": "北京市叶圣陶杯华人青少年作文大赛小学组二等奖",
+      "level": "provincial",
+      "rank": "二等奖",
+      "date": "2023-06",
+      "organization": "叶圣陶杯组委会",
+      "image": "/images/awards/省部级-二等奖-叶圣陶作文-2023年6月.png",
+      "description": "不断精进文学素养"
+    },
+    {
+      "id": "award-011",
+      "title": "中华儿童文化艺术促进会社会实践证书",
+      "level": "provincial",
+      "rank": "证书",
+      "date": "2025-01",
+      "organization": "中华儿童文化艺术促进会",
+      "image": "/images/awards/省部级-奖励-中华儿童文化艺术促进会社会时间证书2025年1月14日.png",
+      "description": "参与社会实践活动"
+    },
+    {
+      "id": "award-012",
+      "title": "永泰小学 研究小达人",
+      "level": "school",
+      "rank": "荣誉称号",
+      "date": "2024-12",
+      "activity": "探寻生态智慧 畅享科技之旅 研学活动",
+      "organization": "永泰小学",
+      "image": "/images/awards/校级-奖励-永泰小学研究小达人-2024年12月.png",
+      "description": "在研学活动中表现突出"
+    },
+    {
+      "id": "award-013",
+      "title": "永泰小学 文明之星",
+      "level": "school",
+      "rank": "荣誉称号",
+      "date": "2024-07",
+      "organization": "永泰小学",
+      "image": "/images/awards/校级-奖励-永泰小学文明之星-2024年7月.png",
+      "description": "展现文明礼貌和良好品德"
+    },
+    {
+      "id": "award-014",
+      "title": "永泰小学 朗读之星",
+      "level": "school",
+      "rank": "荣誉称号",
+      "date": "2024-01",
+      "organization": "永泰小学",
+      "image": "/images/awards/校级-奖励-永泰小学朗读之星-2024年1月.png",
+      "description": "朗读能力突出"
+    },
+    {
+      "id": "award-015",
+      "title": "永泰小学 朗读之星",
+      "level": "school",
+      "rank": "荣誉称号",
+      "date": "2023-07",
+      "organization": "永泰小学",
+      "image": "/images/awards/校级-奖励-永泰小学朗读之星-2023年7月.png",
+      "description": "持续展现优秀的朗读能力"
+    }
+  ]
+}
+

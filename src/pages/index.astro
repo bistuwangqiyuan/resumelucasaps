@@ -1,21 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+// index.astro - 首页
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import AchievementCards from '../components/home/AchievementCards.astro';
+import Timeline from '../components/home/Timeline.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
-</Layout>
+<BaseLayout
+    title="王一然 - 全国作文一等奖获得者 | AI编程少年"
+    description="永泰小学五年级学生王一然的个人网站，展示作文、编程、体育等方面的全面成就。全国作文一等奖获得者，AI编程爱好者，科技创新达人。"
+>
+    <Hero />
+
+    <div id="about"></div>
+    <AchievementCards />
+
+    <Timeline />
+</BaseLayout>

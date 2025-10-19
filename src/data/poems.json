@@ -1,0 +1,92 @@
+{
+  "total": 63,
+  "featured": [
+    {
+      "id": "poem-001",
+      "title": "魔童闹海",
+      "content": "红莲魔丸现世间，\n深渊从中出圣贤，\n我命由我不由天，\n若仙挡路便弑仙。",
+      "category": "抒情",
+      "date": "2023",
+      "featured": true
+    },
+    {
+      "id": "poem-002",
+      "title": "重返天堂",
+      "content": "曾有铅华万世追，\n现从天堂入地垂，\n落魄而去我为灰，\n重新登峰我归回。",
+      "category": "抒情",
+      "date": "2023",
+      "featured": true
+    },
+    {
+      "id": "poem-003",
+      "title": "游海南记",
+      "content": "蓝天碧海黄金沙，\n海南椰果香如花。\n海底水族多如瓦，\n一方清水其愿家。",
+      "category": "写景",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "id": "poem-004",
+      "title": "滑雪有感",
+      "content": "飞花柳雪风驰急，\n我御飞板道欲移，\n风流人物出滑雪，\n英姿飒爽我为一。",
+      "category": "叙事",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "id": "poem-005",
+      "title": "贺妈妈升职",
+      "content": "老二一生也辉煌，\n一生成绩头可昂，\n被提公司高层人，\n姥爷知道直喜狂。",
+      "category": "写人",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "id": "poem-006",
+      "title": "父母诗",
+      "content": "我希母亲早归家，\n奈何工作无空暇。\n吾虽知晓为母难，\n也亦希望母陪儿。",
+      "category": "写人",
+      "date": "2023",
+      "featured": true
+    },
+    {
+      "id": "poem-007",
+      "title": "拜年诗",
+      "content": "宏图年华迎春节，\n寿比南山望往年。\n学业有成心无怨，\n事事如意我拜年。",
+      "category": "抒情",
+      "date": "2024",
+      "featured": true
+    },
+    {
+      "id": "poem-008",
+      "title": "三亚赶海赋",
+      "content": "海洋之中虾蟹多，\n龙游潜水礁石躲，\n珊瑚水草施魅惑，\n钢夹探洞有成果。",
+      "category": "叙事",
+      "date": "2024",
+      "featured": true
+    }
+  ],
+  "categories": [
+    {
+      "name": "全部",
+      "count": 63
+    },
+    {
+      "name": "写人",
+      "count": 18
+    },
+    {
+      "name": "写景",
+      "count": 12
+    },
+    {
+      "name": "抒情",
+      "count": 20
+    },
+    {
+      "name": "叙事",
+      "count": 13
+    }
+  ]
+}
+

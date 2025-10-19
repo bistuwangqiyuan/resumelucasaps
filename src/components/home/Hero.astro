@@ -1,0 +1,491 @@
+---
+// Hero.astro - 首页英雄区组件
+import Button from '../common/Button.astro';
+---
+
+<section class="hero">
+    <div class="hero__container container">
+        <div class="hero__content scroll-reveal">
+            <div class="hero__badge-container">
+                <span class="hero__badge">
+                    <span class="badge-icon">🏆</span>
+                    全国作文一等奖获得者
+                </span>
+            </div>
+
+            <h1 class="hero__title">
+                你好，我是
+                <span class="gradient-text hero__name">王一然</span>
+            </h1>
+
+            <p class="hero__subtitle">
+                <span class="typing-text">全国作文一等奖</span>
+                <span class="divider">|</span>
+                <span class="typing-text delay-1">AI编程少年</span>
+                <span class="divider">|</span>
+                <span class="typing-text delay-2">全能小达人</span>
+            </p>
+
+            <p class="hero__description">
+                永泰小学五年级学生，热爱文学创作和科技创新。
+                <br class="hidden-mobile" />
+                获得全国叶圣陶杯作文一等奖，四年创作63篇诗歌，自主开发游戏项目。
+                <br class="hidden-mobile" />
+                让我们一起探索文学与科技的精彩世界！
+            </p>
+
+            <div class="hero__buttons">
+                <Button href="#about" variant="primary" size="lg">
+                    <span>探索我的世界</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </Button>
+
+                <Button href="/awards" variant="outline" size="lg">
+                    <span>查看荣誉</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="8" r="7"></circle>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                </Button>
+            </div>
+
+            <div class="hero__stats">
+                <div class="stat-item scroll-reveal" data-delay="1">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">获奖数量</div>
+                </div>
+                <div class="stat-item scroll-reveal" data-delay="2">
+                    <div class="stat-number" data-target="63">0</div>
+                    <div class="stat-label">诗歌创作</div>
+                </div>
+                <div class="stat-item scroll-reveal" data-delay="3">
+                    <div class="stat-number" data-target="3">0</div>
+                    <div class="stat-label">项目作品</div>
+                </div>
+                <div class="stat-item scroll-reveal" data-delay="4">
+                    <div class="stat-number" data-target="98">0</div>
+                    <div class="stat-label">学业成绩</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__illustration scroll-reveal">
+            <div class="illustration-container">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+                <div class="center-orb"></div>
+
+                <div class="floating-icon icon-1">🎨</div>
+                <div class="floating-icon icon-2">💻</div>
+                <div class="floating-icon icon-3">🏆</div>
+                <div class="floating-icon icon-4">📚</div>
+                <div class="floating-icon icon-5">⚡</div>
+                <div class="floating-icon icon-6">🤖</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 向下滚动提示 -->
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <p>向下滚动探索更多</p>
+    </div>
+</section>
+
+<style>
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 6rem 0 4rem;
+        overflow: hidden;
+    }
+
+    .hero__container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .hero__content {
+        z-index: 1;
+    }
+
+    .hero__badge-container {
+        margin-bottom: 1.5rem;
+    }
+
+    .hero__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(255, 184, 0, 0.1);
+        border: 1px solid var(--color-accent-gold);
+        border-radius: 9999px;
+        color: var(--color-accent-gold);
+        font-size: 0.875rem;
+        font-weight: 600;
+        animation: pulse 2s infinite;
+    }
+
+    .badge-icon {
+        font-size: 1.25rem;
+        animation: bounce 2s infinite;
+    }
+
+    .hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+
+    .hero__name {
+        display: block;
+        margin-top: 0.5rem;
+    }
+
+    .hero__subtitle {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        color: var(--color-accent-cyan);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .divider {
+        color: var(--color-text-muted);
+    }
+
+    .typing-text {
+        opacity: 0;
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .typing-text.delay-1 {
+        animation-delay: 0.3s;
+    }
+
+    .typing-text.delay-2 {
+        animation-delay: 0.6s;
+    }
+
+    .hero__description {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: var(--color-text-secondary);
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+    }
+
+    .hero__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .hero__stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
+
+    /* 插图容器 */
+    .hero__illustration {
+        position: relative;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .illustration-container {
+        position: relative;
+        width: 400px;
+        height: 400px;
+    }
+
+    .orbit {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid rgba(25, 118, 210, 0.2);
+        border-radius: 50%;
+        animation: spin 20s linear infinite;
+    }
+
+    .orbit-1 {
+        width: 300px;
+        height: 300px;
+    }
+
+    .orbit-2 {
+        width: 350px;
+        height: 350px;
+        animation-duration: 25s;
+        animation-direction: reverse;
+    }
+
+    .orbit-3 {
+        width: 400px;
+        height: 400px;
+        animation-duration: 30s;
+    }
+
+    .center-orb {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, var(--color-primary-500), var(--color-primary-700));
+        border-radius: 50%;
+        box-shadow:
+            0 0 40px rgba(25, 118, 210, 0.6),
+            0 0 80px rgba(25, 118, 210, 0.3);
+        animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    .floating-icon {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .icon-1 {
+        top: 10%;
+        left: 20%;
+        animation-delay: 0s;
+    }
+
+    .icon-2 {
+        top: 20%;
+        right: 15%;
+        animation-delay: 0.5s;
+    }
+
+    .icon-3 {
+        bottom: 20%;
+        left: 10%;
+        animation-delay: 1s;
+    }
+
+    .icon-4 {
+        bottom: 15%;
+        right: 20%;
+        animation-delay: 1.5s;
+    }
+
+    .icon-5 {
+        top: 50%;
+        left: 5%;
+        animation-delay: 2s;
+    }
+
+    .icon-6 {
+        top: 50%;
+        right: 5%;
+        animation-delay: 2.5s;
+    }
+
+    /* 滚动指示器 */
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+        animation: bounce 2s infinite;
+    }
+
+    .mouse {
+        width: 24px;
+        height: 36px;
+        border: 2px solid var(--color-primary-500);
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .wheel {
+        width: 4px;
+        height: 8px;
+        background: var(--color-accent-cyan);
+        border-radius: 2px;
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scroll-wheel 1.5s infinite;
+    }
+
+    @keyframes scroll-wheel {
+        0% {
+            top: 8px;
+            opacity: 1;
+        }
+        100% {
+            top: 20px;
+            opacity: 0;
+        }
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 1023px) {
+        .hero__container {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        .hero__illustration {
+            height: 350px;
+        }
+
+        .illustration-container {
+            width: 300px;
+            height: 300px;
+        }
+
+        .orbit-1 {
+            width: 200px;
+            height: 200px;
+        }
+
+        .orbit-2 {
+            width: 250px;
+            height: 250px;
+        }
+
+        .orbit-3 {
+            width: 300px;
+            height: 300px;
+        }
+
+        .floating-icon {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .hero {
+            min-height: auto;
+            padding: 4rem 0 2rem;
+        }
+
+        .hero__stats {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .hero__buttons {
+            flex-direction: column;
+        }
+
+        .hero__illustration {
+            height: 300px;
+            display: none;
+        }
+
+        .scroll-indicator {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    // 数字递增动画
+    function animateNumber(element: HTMLElement, target: number) {
+        const duration = 2000;
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current).toString();
+        }, 16);
+    }
+
+    // 观察统计数字
+    const statObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const numberEl = entry.target.querySelector('.stat-number') as HTMLElement;
+                    const target = parseInt(numberEl.dataset.target || '0');
+                    animateNumber(numberEl, target);
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    document.querySelectorAll('.stat-item').forEach((el) => {
+        statObserver.observe(el);
+    });
+</script>

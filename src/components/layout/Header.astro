@@ -1,0 +1,282 @@
+---
+// Header.astro - 导航栏组件
+---
+
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="/" class="nav__logo">
+            <span class="logo-text gradient-text">王一然</span>
+            <span class="logo-subtitle">科技·创新·梦想</span>
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="/" class="nav__link">
+                        <span class="nav__icon">🏠</span>
+                        <span>首页</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/about" class="nav__link">
+                        <span class="nav__icon">👤</span>
+                        <span>关于我</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/awards" class="nav__link">
+                        <span class="nav__icon">🏆</span>
+                        <span>荣誉墙</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/poems" class="nav__link">
+                        <span class="nav__icon">📝</span>
+                        <span>诗歌集</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/portfolio" class="nav__link">
+                        <span class="nav__icon">💻</span>
+                        <span>作品集</span>
+                    </a>
+                </li>
+                <li class="nav__item">
+                    <a href="/contact" class="nav__link">
+                        <span class="nav__icon">✉️</span>
+                        <span>联系</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav__close" id="nav-close">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </div>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </div>
+    </nav>
+</header>
+
+<style>
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: var(--z-fixed);
+        transition:
+            background-color var(--duration-normal) var(--ease-out),
+            backdrop-filter var(--duration-normal) var(--ease-out);
+    }
+
+    .header.scrolled {
+        background: rgba(26, 31, 53, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 5rem;
+    }
+
+    .nav__logo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-decoration: none;
+    }
+
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .logo-subtitle {
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+        margin-top: -0.25rem;
+    }
+
+    .nav__list {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav__link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        transition: color var(--duration-normal) var(--ease-out);
+        position: relative;
+    }
+
+    .nav__link::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+        transition: width var(--duration-normal) var(--ease-out);
+    }
+
+    .nav__link:hover {
+        color: var(--color-text-primary);
+    }
+
+    .nav__link:hover::after {
+        width: 100%;
+    }
+
+    .nav__icon {
+        font-size: 1.25rem;
+    }
+
+    .nav__toggle,
+    .nav__close {
+        display: none;
+        cursor: pointer;
+        color: var(--color-text-primary);
+    }
+
+    /* 移动端样式 */
+    @media (max-width: 1023px) {
+        .nav__menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            height: 100vh;
+            background: rgba(26, 31, 53, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 4rem 2rem;
+            transition: right var(--duration-slow) var(--ease-out);
+        }
+
+        .nav__menu.show {
+            right: 0;
+        }
+
+        .nav__list {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .nav__link {
+            font-size: 1.125rem;
+        }
+
+        .nav__toggle,
+        .nav__close {
+            display: flex;
+        }
+
+        .nav__close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+        }
+    }
+
+    /* 平板样式 */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .nav__menu {
+            width: 50%;
+        }
+    }
+
+    /* 激活链接样式 */
+    .nav__link.active {
+        color: var(--color-accent-cyan);
+    }
+
+    .nav__link.active::after {
+        width: 100%;
+    }
+</style>
+
+<script>
+    // 导航栏滚动效果
+    const header = document.getElementById('header');
+
+    function scrollHeader() {
+        if (window.scrollY >= 50) {
+            header?.classList.add('scrolled');
+        } else {
+            header?.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', scrollHeader);
+
+    // 移动端菜单切换
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navClose = document.getElementById('nav-close');
+    const navLinks = document.querySelectorAll('.nav__link');
+
+    navToggle?.addEventListener('click', () => {
+        navMenu?.classList.add('show');
+    });
+
+    navClose?.addEventListener('click', () => {
+        navMenu?.classList.remove('show');
+    });
+
+    // 点击链接关闭菜单
+    navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+            navMenu?.classList.remove('show');
+        });
+    });
+
+    // 高亮当前页面链接
+    const currentPath = window.location.pathname;
+    navLinks.forEach((link) => {
+        if (link.getAttribute('href') === currentPath || (currentPath === '/' && link.getAttribute('href') === '/')) {
+            link.classList.add('active');
+        }
+    });
+</script>

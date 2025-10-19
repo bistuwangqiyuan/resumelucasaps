@@ -1,0 +1,187 @@
+---
+// Footer.astro - 页脚组件
+---
+
+<footer class="footer">
+    <div class="footer__container container">
+        <div class="footer__content">
+            <div class="footer__section">
+                <h3 class="footer__title gradient-text">王一然</h3>
+                <p class="footer__description">
+                    永泰小学五年级学生<br />
+                    全国作文一等奖获得者 | AI编程少年
+                </p>
+            </div>
+
+            <div class="footer__section">
+                <h4 class="footer__subtitle">快速链接</h4>
+                <ul class="footer__links">
+                    <li><a href="/" class="footer__link">首页</a></li>
+                    <li><a href="/about" class="footer__link">关于我</a></li>
+                    <li><a href="/awards" class="footer__link">荣誉墙</a></li>
+                    <li><a href="/poems" class="footer__link">诗歌集</a></li>
+                    <li><a href="/portfolio" class="footer__link">作品集</a></li>
+                    <li><a href="/contact" class="footer__link">联系</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__section">
+                <h4 class="footer__subtitle">项目作品</h4>
+                <ul class="footer__links">
+                    <li>
+                        <a href="https://lako.top" target="_blank" rel="noopener noreferrer" class="footer__link"> 植物大战僵尸游戏 </a>
+                    </li>
+                    <li>
+                        <a href="/poems" class="footer__link"> 诗歌创作集 </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__section">
+                <h4 class="footer__subtitle">技术栈</h4>
+                <div class="footer__tech">
+                    <span class="tech-badge">Astro</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">TailwindCSS</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Netlify</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <p class="footer__copyright">© 2025 王一然 | 基于AI编程开发</p>
+            <p class="footer__powered">
+                Powered by <span class="gradient-text">Astro</span> + <span class="gradient-text">Netlify</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        background: linear-gradient(180deg, rgba(26, 31, 53, 0.5) 0%, rgba(10, 14, 26, 0.9) 100%);
+        border-top: 1px solid var(--color-border);
+        padding: 4rem 0 2rem;
+        margin-top: 6rem;
+    }
+
+    .footer__container {
+        max-width: 1280px;
+    }
+
+    .footer__content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .footer__section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer__title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer__description {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        font-size: 0.9rem;
+    }
+
+    .footer__subtitle {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .footer__links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        list-style: none;
+    }
+
+    .footer__link {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        transition: color var(--duration-normal) var(--ease-out);
+        text-decoration: none;
+    }
+
+    .footer__link:hover {
+        color: var(--color-accent-cyan);
+    }
+
+    .footer__tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tech-badge {
+        padding: 0.375rem 0.75rem;
+        background: rgba(25, 118, 210, 0.1);
+        border: 1px solid var(--color-primary-600);
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .tech-badge:hover {
+        background: rgba(25, 118, 210, 0.2);
+        border-color: var(--color-accent-cyan);
+        color: var(--color-accent-cyan);
+        transform: translateY(-2px);
+    }
+
+    .footer__bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--color-border);
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .footer__copyright,
+    .footer__powered {
+        color: var(--color-text-muted);
+        font-size: 0.875rem;
+    }
+
+    /* 移动端样式 */
+    @media (max-width: 767px) {
+        .footer {
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer__content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer__bottom {
+            flex-direction: column;
+            text-align: center;
+            gap: 0.5rem;
+        }
+    }
+
+    /* 平板样式 */
+    @media (min-width: 768px) and (max-width: 1023px) {
+        .footer__content {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>

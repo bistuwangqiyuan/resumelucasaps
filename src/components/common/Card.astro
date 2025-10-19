@@ -1,0 +1,33 @@
+---
+// Card.astro - 卡片组件
+interface Props {
+    class?: string;
+    hover?: boolean;
+    glow?: boolean;
+}
+
+const { class: className = '', hover = false, glow = false } = Astro.props;
+---
+
+<div class:list={['card', hover && 'card-hover', glow && 'glow-border', className]}>
+    <slot />
+</div>
+
+<style>
+    .card {
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .card-hover:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-primary-600);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-glow);
+    }
+</style>

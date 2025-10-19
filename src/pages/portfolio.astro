@@ -1,0 +1,388 @@
+---
+// portfolio.astro - 作品集页面
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import Badge from '../components/common/Badge.astro';
+import Button from '../components/common/Button.astro';
+import Card from '../components/common/Card.astro';
+import projectsData from '../data/projects.json';
+---
+
+<BaseLayout title="作品集 - 王一然的项目作品" description="王一然的编程项目和创作作品，包括植物大战僵尸游戏、个人网站、诗歌创作等。">
+    <!-- 页头 -->
+    <section class="portfolio-hero">
+        <div class="container">
+            <div class="portfolio-hero__content scroll-reveal">
+                <Badge variant="primary">项目展示</Badge>
+                <h1 class="portfolio-hero__title gradient-text">作品集</h1>
+                <p class="portfolio-hero__description">
+                    用代码实现创意，用作品展现才华。
+                    <br />
+                    每个项目都是学习和成长的见证。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目展示 -->
+    <section class="projects-section section">
+        <div class="container">
+            <div class="projects-grid">
+                {
+                    projectsData.projects.map((project, index) => (
+                        <Card hover glow class="project-card scroll-reveal" data-delay={index + 1}>
+                            <div class="project-header">
+                                <Badge variant={project.featured ? 'gold' : 'primary'}>{project.featured ? '精选项目' : '项目'}</Badge>
+                            </div>
+
+                            <h3 class="project-title">{project.title}</h3>
+                            <p class="project-subtitle">{project.subtitle}</p>
+                            <p class="project-description">{project.description}</p>
+
+                            <div class="project-tech">
+                                {project.tech.map((tech) => (
+                                    <span class="tech-tag">{tech}</span>
+                                ))}
+                            </div>
+
+                            {project.highlights && (
+                                <div class="project-highlights">
+                                    <h4>项目亮点：</h4>
+                                    <ul>
+                                        {project.highlights.map((highlight) => (
+                                            <li>{highlight}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            <div class="project-footer">
+                                {project.url !== '#' ? (
+                                    <Button href={project.url} variant="primary" target="_blank" rel="noopener noreferrer">
+                                        访问项目
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="16"
+                                            height="16"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line x1="10" y1="14" x2="21" y2="3" />
+                                        </svg>
+                                    </Button>
+                                ) : (
+                                    <Button href={project.url} variant="outline">
+                                        当前网站
+                                    </Button>
+                                )}
+                            </div>
+                        </Card>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能展示 -->
+    <section class="skills-section section">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <Badge variant="secondary">能力评估</Badge>
+                <h2 class="section-title">技能水平</h2>
+                <p class="section-description">各领域的能力和水平展示</p>
+            </div>
+
+            <div class="skills-grid">
+                {
+                    projectsData.skills.map((skill, index) => (
+                        <div class="skill-card scroll-reveal" data-delay={index + 1}>
+                            <div class="skill-header">
+                                <div class="skill-icon">{skill.icon}</div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">{skill.category}</h3>
+                                    <div class="skill-percentage">{skill.percentage}%</div>
+                                </div>
+                            </div>
+
+                            <div class="skill-progress">
+                                <div class="skill-progress-bar" style={`width: ${skill.percentage}%`} data-percentage={skill.percentage} />
+                            </div>
+
+                            <div class="skill-items">
+                                {skill.items.map((item) => (
+                                    <span class="skill-tag">{item}</span>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<style>
+    .portfolio-hero {
+        padding: 8rem 0 4rem;
+        text-align: center;
+    }
+
+    .portfolio-hero__content {
+        margin-bottom: 2rem;
+    }
+
+    .portfolio-hero__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin: 1rem 0;
+    }
+
+    .portfolio-hero__description {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.125rem;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+
+    .projects-section {
+        position: relative;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .project-card {
+        padding: 2.5rem;
+    }
+
+    .project-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .project-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-accent-cyan);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-description {
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .tech-tag {
+        padding: 0.375rem 0.75rem;
+        background: rgba(25, 118, 210, 0.1);
+        border: 1px solid var(--color-primary-600);
+        border-radius: 0.375rem;
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+        font-weight: 600;
+    }
+
+    .project-highlights {
+        background: rgba(168, 85, 247, 0.05);
+        border: 1px solid var(--color-border);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .project-highlights h4 {
+        color: var(--color-accent-purple);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-highlights ul {
+        list-style: none;
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .project-highlights li {
+        color: var(--color-text-secondary);
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .project-highlights li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--color-accent-cyan);
+        font-weight: 700;
+    }
+
+    .project-footer {
+        display: flex;
+        gap: 1rem;
+    }
+
+    /* 技能部分 */
+    .skills-section {
+        background: radial-gradient(ellipse at center, rgba(168, 85, 247, 0.05) 0%, transparent 70%);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 1rem 0;
+    }
+
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto;
+        color: var(--color-text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-card {
+        background: rgba(26, 31, 53, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 2rem;
+        transition: all var(--duration-normal) var(--ease-out);
+    }
+
+    .skill-card:hover {
+        background: rgba(26, 31, 53, 0.8);
+        border-color: var(--color-primary-600);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+    }
+
+    .skill-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .skill-icon {
+        font-size: 3rem;
+    }
+
+    .skill-info {
+        flex: 1;
+    }
+
+    .skill-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-text-primary);
+        margin-bottom: 0.25rem;
+    }
+
+    .skill-percentage {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--color-accent-cyan), var(--color-primary-400));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .skill-progress {
+        height: 8px;
+        background: var(--color-bg-tertiary);
+        border-radius: 9999px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+
+    .skill-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-primary-500));
+        border-radius: 9999px;
+        transition: width 1.5s var(--ease-out);
+    }
+
+    .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .skill-tag {
+        padding: 0.25rem 0.75rem;
+        background: rgba(25, 118, 210, 0.1);
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 767px) {
+        .portfolio-hero {
+            padding: 6rem 0 3rem;
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .project-footer {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<script>
+    // 进度条动画
+    const skillObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target.querySelector('.skill-progress-bar') as HTMLElement;
+                    const percentage = bar.dataset.percentage || '0';
+                    bar.style.width = `${percentage}%`;
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    document.querySelectorAll('.skill-card').forEach((el) => {
+        const bar = el.querySelector('.skill-progress-bar') as HTMLElement;
+        bar.style.width = '0%';
+        skillObserver.observe(el);
+    });
+</script>
